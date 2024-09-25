@@ -22,7 +22,8 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
 
     const lastX = useRef(0)
     const rotationSpeed = useRef(0)
-    const dampingFactor = 0.95
+    // const dampingFactor = 0.95
+    const dampingFactor = 0.7
 
     const handlePointerDown = (e) => {
         e.stopPropagation()
@@ -65,9 +66,11 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
         if (e.key === 'ArrowLeft') {
             if (!isRotating) setIsRotating(true)
             islandRef.current.rotation.y += 0.01 * Math.PI
+            rotationSpeed.current = 0.0125 * Math.PI
         } else if (e.key === 'ArrowRight') {
             if (!isRotating) setIsRotating(true)
             islandRef.current.rotation.y -= 0.01 * Math.PI
+            rotationSpeed.current = 0.0125 * Math.PI
         }
     }
 
